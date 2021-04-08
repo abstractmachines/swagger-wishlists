@@ -91,8 +91,7 @@ paths:
         in: "path"
         description: "ID of instrument to return"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
       responses:
         "200":
           description: "successful operation"
@@ -120,8 +119,7 @@ paths:
         in: "path"
         description: "ID of instrument that needs to be updated"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
       - name: "status"
         in: "formData"
         description: "Updated status of the inventory"
@@ -180,8 +178,7 @@ paths:
         in: "path"
         description: "Instrument id to delete"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
       responses:
         "204":
           description: "Successful deletion"
@@ -519,8 +516,7 @@ paths:
         in: "path"
         description: "ID of inventory to update"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
       - name: "additionalMetadata"
         in: "formData"
         description: "Additional data to pass to server"
@@ -584,9 +580,9 @@ paths:
         description: "ID of inventory order that needs to be fetched"
         required: true
         type: "integer"
-        maximum: 10
+        maximum: 10 # wuut
         minimum: 1
-        format: "int64"
+        format: "int32"
       responses:
         "200":
           description: "successful operation"
@@ -614,7 +610,7 @@ paths:
         required: true
         type: "integer"
         minimum: 1
-        format: "int64"
+        format: "int32"
       responses:
         "204":
           description: "Successful deletion"
@@ -819,10 +815,10 @@ definitions:
     properties:
       id:
         type: "integer"
-        format: "int64"
+        format: "int32"
       inventoryId:
         type: "integer"
-        format: "int64"
+        format: "int32"
       quantity:
         type: "integer"
         format: "int32"
@@ -852,8 +848,7 @@ definitions:
     type: "object"
     properties:
       id:
-        type: "integer"
-        format: "int64"
+        type: "string"
       username:
         type: "string"
       firstName:
@@ -885,8 +880,7 @@ definitions:
     type: "object"
     properties:
       id:
-        type: "integer"
-        format: "int64"
+        type: "string"
       name:
         type: "string"
     xml:
@@ -904,8 +898,7 @@ definitions:
     - "yearTo"
     properties:
       id:
-        type: "integer"
-        format: "int64"
+        type: "string"
       make:
         type: "string"
         example: "Gibson"
@@ -913,11 +906,9 @@ definitions:
         type: "string"
         example: "Les Paul"
       yearFrom:
-        type: "integer"
-        format: "int64"
+        type: "string"
       yearTo:
-        type: "integer"
-        format: "int64"
+        type: "string"
       finishes:
         type: "string"
         description: "finish options"
@@ -954,8 +945,7 @@ definitions:
     - "year"
     properties:
       id:
-        type: "integer"
-        format: "int64"
+        type: "string"
       make:
         type: "string"
         example: "Gibson"
@@ -963,8 +953,7 @@ definitions:
         type: "string"
         example: "Les Paul"
       year:
-        type: "integer"
-        format: "int64"
+        type: "string"
       finish:
         type: "string"
         description: "finish"
