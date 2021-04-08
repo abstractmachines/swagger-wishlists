@@ -907,11 +907,11 @@ definitions:
         example: "Les Paul"
       yearFrom:
         type: "string"
-        # pattern: "^[1|2]\d{3}$"
+        pattern: '^[1|2]\d{3}$'
         example: "1959"
       yearTo:
         type: "string"
-        # pattern: "^[1|2]\d{3}$"
+        pattern: '^[1|2]\d{3}$'
         example: "2021"
       finishes:
         type: "string"
@@ -963,7 +963,7 @@ definitions:
         example: "Coronado"
       year:
         type: "string"
-        # pattern: "^[1|2]\d{3}$"
+        pattern: '^[1|2]\d{3}$'
         example: "1983"
       finish:
         type: "string"
