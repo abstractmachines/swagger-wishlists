@@ -1,0 +1,1004 @@
+---
+swagger: "2.0"
+info:
+  description: "This API provides basic functionality for operations on Wishlists"
+  version: "1.0.0"
+  title: "Swagger Node Wishlists API"
+# host: "virtserver.swaggerhub.com"
+# basePath: "/abstractmachines/instrumentWishlists/1.0.0"
+host: localhost:5000
+basePath: /
+tags:
+- name: "instrument"
+  description: "The Instruments API"
+  externalDocs:
+    description: "Musical Instruments Blue Book API"
+    url: "http://"
+- name: "inventory"
+  description: "The Inventory API"
+- name: "wishlist"
+  description: "The Wishlists API"
+- name: "user"
+  description: "Operations and information about user"
+schemes:
+- "https"
+- "http"
+paths:
+  /instruments:
+    get:
+      tags:
+      - "instrument"
+      summary: "List possible instruments"
+      operationId: "getInstruments"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Instrument"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Instrument"
+  /instrument:
+    post:
+      tags:
+      - "instrument"
+      summary: "Add a new instrument"
+      operationId: "createInstrument"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Instrument object"
+        required: true
+        schema:
+          $ref: "#/definitions/Instrument"
+      responses:
+        "201":
+          description: "Instrument created"
+          schema:
+            $ref: "#/definitions/Instrument"
+        "400":
+          description: "Bad request"
+        "405":
+          description: "Invalid input"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Instrument"
+  /instrument/{instrumentId}:
+    get:
+      tags:
+      - "instrument"
+      summary: "Find instrument by ID"
+      description: "Returns a single instrument"
+      operationId: "getInstrumentById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "instrumentId"
+        in: "path"
+        description: "ID of instrument to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Instrument"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Instrument"
+    post:
+      tags:
+      - "instrument"
+      summary: "Updates an instrument with form data"
+      operationId: "updateInstrumentWithForm"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "instrumentId"
+        in: "path"
+        description: "ID of instrument that needs to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "status"
+        in: "formData"
+        description: "Updated status of the inventory"
+        required: false
+        type: "string"
+      responses:
+        "405":
+          description: "Invalid input"
+      x-swagger-router-controller: "Instrument"
+    put:
+      tags:
+      - "instrument"
+      summary: "Update an existing instrument"
+      operationId: "updateInstrument"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "instrumentId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Instrument object"
+        required: true
+        schema:
+          $ref: "#/definitions/Instrument"
+      responses:
+        "201":
+          description: "Instrument updated"
+          schema:
+            $ref: "#/definitions/Instrument"
+        "404":
+          description: "Not Found"
+        "405":
+          description: "Validation exception"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Instrument"
+    delete:
+      tags:
+      - "instrument"
+      summary: "Deletes an instrument"
+      operationId: "deleteInstrument"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "instrumentId"
+        in: "path"
+        description: "Instrument id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "204":
+          description: "Successful deletion"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Instrument"
+  /user/{userId}/wishlists:
+    get:
+      tags:
+      - "wishlist"
+      summary: "List wishlists"
+      operationId: "getWishlists"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Instrument"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Wishlist"
+  /user/{userId}/wishlist:
+    post:
+      tags:
+      - "wishlist"
+      summary: "Add a new wishlist"
+      operationId: "createWishlist"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Instrument object"
+        required: true
+        schema:
+          $ref: "#/definitions/Instrument"
+      responses:
+        "201":
+          description: "Instrument Wishlist created"
+          schema:
+            $ref: "#/definitions/Instrument"
+        "400":
+          description: "Bad request"
+        "405":
+          description: "Invalid input"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Wishlist"
+  /user/{userId}/wishlist/{wishlistId}:
+    get:
+      tags:
+      - "wishlist"
+      summary: "Find wishlist by ID"
+      description: "Returns a single wishlist"
+      operationId: "getWishlistById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "wishlistId"
+        in: "path"
+        description: "ID of wishlist to return"
+        required: true
+        type: "string"
+      - name: "userId"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Instrument"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Wishlist"
+    post:
+      tags:
+      - "instrument"
+      summary: "Updates a wishlist with form data"
+      operationId: "updateWishlistWithForm"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "wishlistId"
+        in: "path"
+        description: "ID of wishlist to return"
+        required: true
+        type: "string"
+      - name: "userId"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      - name: "status"
+        in: "formData"
+        description: "Updated status of the inventory"
+        required: false
+        type: "string"
+      responses:
+        "405":
+          description: "Invalid input"
+      x-swagger-router-controller: "Instrument"
+    put:
+      tags:
+      - "instrument"
+      summary: "Update an existing wishlist"
+      operationId: "updateWishlist"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "wishlistId"
+        in: "path"
+        description: "ID of wishlist to return"
+        required: true
+        type: "string"
+      - name: "userId"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Instrument object"
+        required: true
+        schema:
+          $ref: "#/definitions/Instrument"
+      responses:
+        "201":
+          description: "Instrument updated"
+          schema:
+            $ref: "#/definitions/Instrument"
+        "404":
+          description: "Not Found"
+        "405":
+          description: "Validation exception"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Instrument"
+    delete:
+      tags:
+      - "instrument"
+      summary: "Deletes a wishlist"
+      operationId: "deleteWishlist"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "wishlistId"
+        in: "path"
+        description: "ID of wishlist to return"
+        required: true
+        type: "string"
+      - name: "userId"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      responses:
+        "204":
+          description: "Successful deletion"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Instrument"
+  /inventory:
+    get:
+      tags:
+      - "inventory"
+      summary: "Returns instrument inventory"
+      description: "Returns a map of status codes to quantities"
+      operationId: "getInventory"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Inventory"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Inventory"
+  /inventory/{inventoryId}:
+    get:
+      tags:
+      - "inventory"
+      summary: "Returns instrument inventory by ID"
+      description: "Return inventory item"
+      operationId: "getInventoryById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "inventoryId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Inventory"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Inventory"
+  /inventory/findByStatus:
+    get:
+      tags:
+      - "inventory"
+      summary: "Finds Instruments by status"
+      description: "Multiple status values can be provided with comma separated strings"
+      operationId: "findInventoryByStatus"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "status"
+        in: "query"
+        description: "Status values that need to be considered for filter"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          default: "available"
+          enum:
+          - "available"
+          - "pending"
+          - "sold"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Inventory"
+        "400":
+          description: "Invalid status value"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Inventory"
+  /inventory/findByTags:
+    get:
+      tags:
+      - "inventory"
+      summary: "Finds Inventory by tags"
+      description: "Muliple tags can be provided with comma separated strings. Use\\\
+        \ \\ tag1, tag2, tag3 for testing."
+      operationId: "findInventoryByTags"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "tags"
+        in: "query"
+        description: "Tags to filter by"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Instrument"
+        "400":
+          description: "Invalid tag value"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      deprecated: true
+      x-swagger-router-controller: "Inventory"
+  /inventory/{inventoryId}/uploadImage:
+    post:
+      tags:
+      - "inventory"
+      summary: "uploads an image"
+      operationId: "uploadFile"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "inventoryId"
+        in: "path"
+        description: "ID of inventory to update"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "additionalMetadata"
+        in: "formData"
+        description: "Additional data to pass to server"
+        required: false
+        type: "string"
+      - name: "file"
+        in: "formData"
+        description: "file to upload"
+        required: false
+        type: "file"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Instrument"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Inventory"
+  /order:
+    post:
+      tags:
+      - "inventory"
+      summary: "Place an order for an instrument"
+      operationId: "placeOrder"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "order for instrument in inventory"
+        required: true
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Order"
+        "400":
+          description: "Invalid Order"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Inventory"
+  /order/{orderId}:
+    get:
+      tags:
+      - "inventory"
+      summary: "Find purchase order by ID"
+      description: "For valid response try integer IDs with value >= 1 and <= 10.\\\
+        \ \\ Other values will generated exceptions"
+      operationId: "getOrderById"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "orderId"
+        in: "path"
+        description: "ID of inventory order that needs to be fetched"
+        required: true
+        type: "integer"
+        maximum: 10
+        minimum: 1
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Order"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Not Found"
+      x-swagger-router-controller: "Inventory"
+    delete:
+      tags:
+      - "inventory"
+      summary: "Delete purchase order by ID"
+      description: "For valid response try integer IDs with positive integer value.\\\
+        \ \\ Negative or non-integer values will generate API errors"
+      operationId: "deleteOrder"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "orderId"
+        in: "path"
+        description: "ID of the order that needs to be deleted"
+        required: true
+        type: "integer"
+        minimum: 1
+        format: "int64"
+      responses:
+        "204":
+          description: "Successful deletion"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "Inventory"
+  /user:
+    post:
+      tags:
+      - "user"
+      summary: "Create user"
+      description: "This can only be done by the logged in user."
+      operationId: "createUser"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+      x-swagger-router-controller: "User"
+  /user/createWithArray:
+    post:
+      tags:
+      - "user"
+      summary: "Creates list of users with given input array"
+      operationId: "createUsersWithArrayInput"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "List of user object"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/User"
+      responses:
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+        default:
+          description: "successful operation"
+      x-swagger-router-controller: "User"
+  /user/login:
+    get:
+      tags:
+      - "user"
+      summary: "Logs user into the system"
+      operationId: "loginUser"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "The user name for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for login in clear text"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          headers:
+            X-Rate-Limit:
+              type: "integer"
+              format: "int32"
+              description: "calls per hour allowed by the user"
+            X-Expires-After:
+              type: "string"
+              format: "date-time"
+              description: "date in UTC when token expires"
+          schema:
+            type: "string"
+        "400":
+          description: "Invalid username/password supplied"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "User"
+  /user/logout:
+    get:
+      tags:
+      - "user"
+      summary: "Logs out current logged in user session"
+      operationId: "logoutUser"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters: []
+      responses:
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+        default:
+          description: "successful operation"
+      x-swagger-router-controller: "User"
+  /user/{username}:
+    get:
+      tags:
+      - "user"
+      summary: "Get user by user name"
+      operationId: "getUserByName"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "The name that needs to be fetched. Use user1 for testing."
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "User"
+    put:
+      tags:
+      - "user"
+      summary: "Updated user"
+      description: "This can only be done by the logged in user."
+      operationId: "updateUser"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "name that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "400":
+          description: "Invalid user supplied"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "User"
+    delete:
+      tags:
+      - "user"
+      summary: "Delete user"
+      description: "This can only be done by the logged in user."
+      operationId: "deleteUser"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "The name that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        "204":
+          description: "Successful deletion"
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "Not Found"
+        "500":
+          $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "User"
+definitions:
+  ErrorResponse:
+    type: "object"
+    required:
+    - "message"
+    properties:
+      message:
+        type: "string"
+  Order:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      inventoryId:
+        type: "integer"
+        format: "int64"
+      quantity:
+        type: "integer"
+        format: "int32"
+      shipDate:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        description: "Order Status"
+        enum:
+        - "placed"
+        - "approved"
+        - "delivered"
+      complete:
+        type: "boolean"
+        default: false
+    xml:
+      name: "Order"
+    example:
+      quantity: 1
+      inventoryId: 6
+      id: 0
+      shipDate: "2000-01-23T04:56:07.000+00:00"
+      complete: false
+      status: "placed"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+      userStatus:
+        type: "integer"
+        format: "int32"
+        description: "User Status"
+    xml:
+      name: "User"
+    example:
+      firstName: "firstName"
+      lastName: "lastName"
+      password: "password"
+      userStatus: 6
+      phone: "phone"
+      id: 0
+      email: "email"
+      username: "username"
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Tag"
+    example:
+      name: "name"
+      id: 1
+  Instrument:
+    type: "object"
+    required:
+    - "id"
+    - "make"
+    - "model"
+    - "yearFrom"
+    - "yearTo"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      make:
+        type: "string"
+        example: "Gibson"
+      model:
+        type: "string"
+        example: "Les Paul"
+      yearFrom:
+        type: "integer"
+        format: "int64"
+      yearTo:
+        type: "integer"
+        format: "int64"
+      finishes:
+        type: "string"
+        description: "finish options"
+        enum:
+        - "nitrocellulose lacquer"
+        - "acrylic lacquer"
+        - "linear urethane"
+        - "polyurethane"
+        - "shellac"
+      colors:
+        type: "array"
+        description: "color options"
+        items:
+          type: "string"
+    xml:
+      name: "Instrument"
+    example:
+      yearFrom: 6
+      finishes: "nitrocellulose lacquer"
+      model: "Les Paul"
+      id: 0
+      make: "Gibson"
+      colors:
+      - "colors"
+      - "colors"
+      yearTo: 1
+  Inventory:
+    type: "object"
+    required:
+    - "id"
+    - "make"
+    - "model"
+    - "status"
+    - "year"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      make:
+        type: "string"
+        example: "Gibson"
+      model:
+        type: "string"
+        example: "Les Paul"
+      year:
+        type: "integer"
+        format: "int64"
+      finish:
+        type: "string"
+        description: "finish"
+      color:
+        type: "string"
+        description: "color"
+      status:
+        type: "string"
+        description: "inventory mgmt"
+        enum:
+        - "available"
+        - "pending"
+        - "sold"
+      file:
+        type: "string"
+        description: "image for inventory instrument"
+      tags:
+        type: "array"
+        xml:
+          name: "tag"
+          wrapped: true
+        items:
+          $ref: "#/definitions/Tag"
+    example:
+      file: "file"
+      color: "color"
+      year: 6
+      model: "Les Paul"
+      finish: "finish"
+      id: 0
+      make: "Gibson"
+      status: "available"
+      tags:
+      - name: "name"
+        id: 1
+      - name: "name"
+        id: 1
