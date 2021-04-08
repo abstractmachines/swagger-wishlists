@@ -907,8 +907,10 @@ definitions:
         example: "Les Paul"
       yearFrom:
         type: "string"
+        pattern: "^[1|2]\d{3}$"
       yearTo:
         type: "string"
+        pattern: "^[1|2]\d{3}$"
       finishes:
         type: "string"
         description: "finish options"
@@ -954,6 +956,8 @@ definitions:
         example: "Les Paul"
       year:
         type: "string"
+        pattern: "^[1|2]\d{3}$"
+        example: "1983"
       finish:
         type: "string"
         description: "finish"
@@ -978,16 +982,16 @@ definitions:
         items:
           $ref: "#/definitions/Tag"
     example:
-      file: "file"
-      color: "color"
-      year: 6
+      file: "les-paul.jpg"
+      color: "black"
+      year: 1983
       model: "Les Paul"
       finish: "finish"
-      id: 0
+      id: "acb123"
       make: "Gibson"
       status: "available"
       tags:
-      - name: "name"
-        id: 1
-      - name: "name"
+      - name: "belt buckle rash"
+        id: 0
+      - name: "chipped paint"
         id: 1
