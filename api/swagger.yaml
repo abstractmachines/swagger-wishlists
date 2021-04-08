@@ -868,14 +868,14 @@ definitions:
     xml:
       name: "User"
     example:
-      firstName: "firstName"
-      lastName: "lastName"
-      password: "password"
+      firstName: "Bilbo"
+      lastName: "Baggins"
+      password: "shireTimes123"
       userStatus: 6
-      phone: "phone"
-      id: 0
-      email: "email"
-      username: "username"
+      phone: "123-456-7890"
+      id: "jfdkjlsfjkl432987"
+      email: "bilbo@shire-snail-mail-service-yup.io"
+      username: "bilbo"
   Tag:
     type: "object"
     properties:
@@ -886,8 +886,8 @@ definitions:
     xml:
       name: "Tag"
     example:
-      name: "name"
-      id: 1
+      name: "belt buckle rash on back"
+      id: "kjsjklfsdjkl"
   Instrument:
     type: "object"
     required:
@@ -907,10 +907,12 @@ definitions:
         example: "Les Paul"
       yearFrom:
         type: "string"
-        pattern: "^[1|2]\d{3}$"
+        # pattern: "^[1|2]\d{3}$"
+        example: "1959"
       yearTo:
         type: "string"
-        pattern: "^[1|2]\d{3}$"
+        # pattern: "^[1|2]\d{3}$"
+        example: "2021"
       finishes:
         type: "string"
         description: "finish options"
@@ -928,15 +930,20 @@ definitions:
     xml:
       name: "Instrument"
     example:
-      yearFrom: 6
+      yearFrom: "1957"
       finishes: "nitrocellulose lacquer"
       model: "Les Paul"
-      id: 0
+      id: "jklj3210fjkl"
       make: "Gibson"
       colors:
-      - "colors"
-      - "colors"
-      yearTo: 1
+      - "sunburst"
+      - "black"
+      - "white"
+      - "gold"
+      - "tv yellow"
+      - "silver sparkle"
+      - "red"
+      yearTo: "2021"
   Inventory:
     type: "object"
     required:
@@ -950,23 +957,26 @@ definitions:
         type: "string"
       make:
         type: "string"
-        example: "Gibson"
+        example: "Fender"
       model:
         type: "string"
-        example: "Les Paul"
+        example: "Coronado"
       year:
         type: "string"
-        pattern: "^[1|2]\d{3}$"
+        # pattern: "^[1|2]\d{3}$"
         example: "1983"
       finish:
         type: "string"
         description: "finish"
+        example: "nitrocellulose lacquer"
       color:
         type: "string"
         description: "color"
+        example: "tv yellow"
       status:
         type: "string"
         description: "inventory mgmt"
+        example: "available"
         enum:
         - "available"
         - "pending"
@@ -983,11 +993,11 @@ definitions:
           $ref: "#/definitions/Tag"
     example:
       file: "les-paul.jpg"
-      color: "black"
-      year: 1983
+      color: "silver sparkle"
+      year: "2019"
       model: "Les Paul"
-      finish: "finish"
-      id: "acb123"
+      finish: "polyurethane"
+      id: "acb123heyhey"
       make: "Gibson"
       status: "available"
       tags:

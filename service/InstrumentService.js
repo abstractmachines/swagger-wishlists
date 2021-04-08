@@ -11,13 +11,13 @@ exports.createInstrument = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklfjkl17849789",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "silver sparkle", "gold", "black", "tv yellow" ],
+  "yearTo" : "2021"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -68,14 +68,14 @@ exports.getInstrumentById = function(instrumentId) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "yearFrom" : 6,
-  "finishes" : "nitrocellulose lacquer",
-  "model" : "Les Paul",
-  "id" : 0,
-  "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
-};
+      "yearFrom" : "1957",
+      "finishes" : "nitrocellulose lacquer",
+      "model" : "Les Paul",
+      "id" : "jklfjkl17849789",
+      "make" : "Gibson",
+      "colors" : [ "silver sparkle", "gold", "black", "tv yellow" ],
+      "yearTo" : "2021"
+    };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -94,21 +94,21 @@ exports.getInstruments = function() {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "yearFrom" : 6,
-  "finishes" : "nitrocellulose lacquer",
-  "model" : "Les Paul",
-  "id" : 0,
-  "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+    "yearFrom" : "1957",
+    "finishes" : "nitrocellulose lacquer",
+    "model" : "Les Paul",
+    "id" : "jklfjkl17849789",
+    "make" : "Gibson",
+    "colors" : [ "silver sparkle", "gold", "black", "tv yellow" ],
+    "yearTo" : "2021"
 }, {
-  "yearFrom" : 6,
-  "finishes" : "nitrocellulose lacquer",
-  "model" : "Les Paul",
-  "id" : 0,
-  "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "yearFrom" : "1973",
+      "finishes" : "nitrocellulose lacquer",
+      "model" : "Black Beauty",
+      "id" : "fjkdlkj4328790fj",
+      "make" : "Gibson",
+      "colors" : [ "black" ],
+      "yearTo" : "1988"
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
