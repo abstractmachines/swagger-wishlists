@@ -312,7 +312,7 @@ paths:
       responses:
         "405":
           description: "Invalid input"
-      x-swagger-router-controller: "Instrument"
+      x-swagger-router-controller: "Wishlist"
     put:
       tags:
       - "instrument"
@@ -351,7 +351,7 @@ paths:
           description: "Validation exception"
         "500":
           $ref: "#/definitions/ErrorResponse"
-      x-swagger-router-controller: "Instrument"
+      x-swagger-router-controller: "Wishlist"
     delete:
       tags:
       - "instrument"
