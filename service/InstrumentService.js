@@ -130,13 +130,13 @@ exports.updateInstrument = function(instrumentId,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "yearFrom" : 6,
-  "finishes" : "nitrocellulose lacquer",
-  "model" : "Les Paul",
-  "id" : 0,
-  "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+      "yearFrom" : "1988",
+      "finishes" : "nitrocellulose lacquer",
+      "model" : "Coronado",
+      "id" : "fjkdlkj4328790fj",
+      "make" : "Fender",
+      "colors" : [ "aqua", "white" ],
+      "yearTo" : "1988"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -173,13 +173,13 @@ exports.updateWishlist = function(wishlistId,userId,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "yearFrom" : 6,
-  "finishes" : "nitrocellulose lacquer",
-  "model" : "Les Paul",
-  "id" : 0,
-  "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+      "yearFrom" : "1973",
+      "finishes" : "nitrocellulose lacquer",
+      "model" : "Black Beauty",
+      "id" : "fjkdlkj4328790fj",
+      "make" : "Gibson",
+      "colors" : [ "green" ], // change from black
+      "yearTo" : "1988"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
