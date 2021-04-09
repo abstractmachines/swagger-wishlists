@@ -11,13 +11,13 @@ exports.createInstrument = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -32,7 +32,7 @@ exports.createInstrument = function(body) {
  * Deletes an instrument
  *
  * api_key String  (optional)
- * instrumentId Long Instrument id to delete
+ * instrumentId String Instrument id to delete
  * no response value expected for this operation
  **/
 exports.deleteInstrument = function(api_key,instrumentId) {
@@ -43,38 +43,23 @@ exports.deleteInstrument = function(api_key,instrumentId) {
 
 
 /**
- * Deletes a wishlist
- *
- * api_key String  (optional)
- * wishlistId String ID of wishlist to return
- * userId String ID of user
- * no response value expected for this operation
- **/
-exports.deleteWishlist = function(api_key,wishlistId,userId) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
-}
-
-
-/**
  * Find instrument by ID
  * Returns a single instrument
  *
- * instrumentId Long ID of instrument to return
+ * instrumentId String ID of instrument to return
  * returns Instrument
  **/
 exports.getInstrumentById = function(instrumentId) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -94,21 +79,21 @@ exports.getInstruments = function() {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 }, {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -130,13 +115,13 @@ exports.updateInstrument = function(instrumentId,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -150,55 +135,11 @@ exports.updateInstrument = function(instrumentId,body) {
 /**
  * Updates an instrument with form data
  *
- * instrumentId Long ID of instrument that needs to be updated
+ * instrumentId String ID of instrument that needs to be updated
  * status String Updated status of the inventory (optional)
  * no response value expected for this operation
  **/
 exports.updateInstrumentWithForm = function(instrumentId,status) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
-}
-
-
-/**
- * Update an existing wishlist
- *
- * wishlistId String ID of wishlist to return
- * userId String ID of user
- * body Instrument Instrument object
- * returns Instrument
- **/
-exports.updateWishlist = function(wishlistId,userId,body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "yearFrom" : 6,
-  "finishes" : "nitrocellulose lacquer",
-  "model" : "Les Paul",
-  "id" : 0,
-  "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * Updates a wishlist with form data
- *
- * wishlistId String ID of wishlist to return
- * userId String ID of user
- * status String Updated status of the inventory (optional)
- * no response value expected for this operation
- **/
-exports.updateWishlistWithForm = function(wishlistId,userId,status) {
   return new Promise(function(resolve, reject) {
     resolve();
   });

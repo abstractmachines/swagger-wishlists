@@ -5,7 +5,7 @@
  * Delete purchase order by ID
  * For valid response try integer IDs with positive integer value.\\ \\ Negative or non-integer values will generate API errors
  *
- * orderId Long ID of the order that needs to be deleted
+ * orderId Integer ID of the order that needs to be deleted
  * no response value expected for this operation
  **/
 exports.deleteOrder = function(orderId) {
@@ -26,35 +26,35 @@ exports.findInventoryByStatus = function(status) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "file" : "file",
-  "color" : "color",
-  "year" : 6,
+  "file" : "les-paul.jpg",
+  "color" : "silver sparkle",
+  "year" : "2019",
   "model" : "Les Paul",
-  "finish" : "finish",
-  "id" : 0,
+  "finish" : "polyurethane",
+  "id" : "acb123heyhey",
   "make" : "Gibson",
   "status" : "available",
   "tags" : [ {
-    "name" : "name",
-    "id" : 1
+    "name" : "belt buckle rash",
+    "id" : 0
   }, {
-    "name" : "name",
+    "name" : "chipped paint",
     "id" : 1
   } ]
 }, {
-  "file" : "file",
-  "color" : "color",
-  "year" : 6,
+  "file" : "les-paul.jpg",
+  "color" : "silver sparkle",
+  "year" : "2019",
   "model" : "Les Paul",
-  "finish" : "finish",
-  "id" : 0,
+  "finish" : "polyurethane",
+  "id" : "acb123heyhey",
   "make" : "Gibson",
   "status" : "available",
   "tags" : [ {
-    "name" : "name",
-    "id" : 1
+    "name" : "belt buckle rash",
+    "id" : 0
   }, {
-    "name" : "name",
+    "name" : "chipped paint",
     "id" : 1
   } ]
 } ];
@@ -78,21 +78,21 @@ exports.findInventoryByTags = function(tags) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 }, {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -113,35 +113,35 @@ exports.getInventory = function() {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "file" : "file",
-  "color" : "color",
-  "year" : 6,
+  "file" : "les-paul.jpg",
+  "color" : "silver sparkle",
+  "year" : "2019",
   "model" : "Les Paul",
-  "finish" : "finish",
-  "id" : 0,
+  "finish" : "polyurethane",
+  "id" : "acb123heyhey",
   "make" : "Gibson",
   "status" : "available",
   "tags" : [ {
-    "name" : "name",
-    "id" : 1
+    "name" : "belt buckle rash",
+    "id" : 0
   }, {
-    "name" : "name",
+    "name" : "chipped paint",
     "id" : 1
   } ]
 }, {
-  "file" : "file",
-  "color" : "color",
-  "year" : 6,
+  "file" : "les-paul.jpg",
+  "color" : "silver sparkle",
+  "year" : "2019",
   "model" : "Les Paul",
-  "finish" : "finish",
-  "id" : 0,
+  "finish" : "polyurethane",
+  "id" : "acb123heyhey",
   "make" : "Gibson",
   "status" : "available",
   "tags" : [ {
-    "name" : "name",
-    "id" : 1
+    "name" : "belt buckle rash",
+    "id" : 0
   }, {
-    "name" : "name",
+    "name" : "chipped paint",
     "id" : 1
   } ]
 } ];
@@ -165,19 +165,19 @@ exports.getInventoryById = function(inventoryId) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "file" : "file",
-  "color" : "color",
-  "year" : 6,
+  "file" : "les-paul.jpg",
+  "color" : "silver sparkle",
+  "year" : "2019",
   "model" : "Les Paul",
-  "finish" : "finish",
-  "id" : 0,
+  "finish" : "polyurethane",
+  "id" : "acb123heyhey",
   "make" : "Gibson",
   "status" : "available",
   "tags" : [ {
-    "name" : "name",
-    "id" : 1
+    "name" : "belt buckle rash",
+    "id" : 0
   }, {
-    "name" : "name",
+    "name" : "chipped paint",
     "id" : 1
   } ]
 };
@@ -194,7 +194,7 @@ exports.getInventoryById = function(inventoryId) {
  * Find purchase order by ID
  * For valid response try integer IDs with value >= 1 and <= 10.\\ \\ Other values will generated exceptions
  *
- * orderId Long ID of inventory order that needs to be fetched
+ * orderId Integer ID of inventory order that needs to be fetched
  * returns Order
  **/
 exports.getOrderById = function(orderId) {
@@ -246,7 +246,7 @@ exports.placeOrder = function(body) {
 /**
  * uploads an image
  *
- * inventoryId Long ID of inventory to update
+ * inventoryId String ID of inventory to update
  * additionalMetadata String Additional data to pass to server (optional)
  * file File file to upload (optional)
  * returns Instrument
@@ -255,13 +255,13 @@ exports.uploadFile = function(inventoryId,additionalMetadata,file) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);

@@ -12,19 +12,34 @@ exports.createWishlist = function(userId,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
     }
+  });
+}
+
+
+/**
+ * Deletes a wishlist
+ *
+ * api_key String  (optional)
+ * wishlistId String ID of wishlist to return
+ * userId String ID of user
+ * no response value expected for this operation
+ **/
+exports.deleteWishlist = function(api_key,wishlistId,userId) {
+  return new Promise(function(resolve, reject) {
+    resolve();
   });
 }
 
@@ -41,13 +56,13 @@ exports.getWishlistById = function(wishlistId,userId) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -68,27 +83,71 @@ exports.getWishlists = function(userId) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 }, {
-  "yearFrom" : 6,
+  "yearFrom" : "1957",
   "finishes" : "nitrocellulose lacquer",
   "model" : "Les Paul",
-  "id" : 0,
+  "id" : "jklj3210fjkl",
   "make" : "Gibson",
-  "colors" : [ "colors", "colors" ],
-  "yearTo" : 1
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
     }
+  });
+}
+
+
+/**
+ * Update an existing wishlist
+ *
+ * wishlistId String ID of wishlist to return
+ * userId String ID of user
+ * body Instrument Instrument object
+ * returns Instrument
+ **/
+exports.updateWishlist = function(wishlistId,userId,body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "yearFrom" : "1957",
+  "finishes" : "nitrocellulose lacquer",
+  "model" : "Les Paul",
+  "id" : "jklj3210fjkl",
+  "make" : "Gibson",
+  "colors" : [ "sunburst", "black", "white", "gold", "tv yellow", "silver sparkle", "red" ],
+  "yearTo" : "2021"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Updates a wishlist with form data
+ *
+ * wishlistId String ID of wishlist to return
+ * userId String ID of user
+ * status String Updated status of the inventory (optional)
+ * no response value expected for this operation
+ **/
+exports.updateWishlistWithForm = function(wishlistId,userId,status) {
+  return new Promise(function(resolve, reject) {
+    resolve();
   });
 }
 

@@ -26,19 +26,6 @@ module.exports.deleteInstrument = function deleteInstrument (req, res, next) {
     });
 };
 
-module.exports.deleteWishlist = function deleteWishlist (req, res, next) {
-  var api_key = req.swagger.params['api_key'].value;
-  var wishlistId = req.swagger.params['wishlistId'].value;
-  var userId = req.swagger.params['userId'].value;
-  Instrument.deleteWishlist(api_key,wishlistId,userId)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
 module.exports.getInstrumentById = function getInstrumentById (req, res, next) {
   var instrumentId = req.swagger.params['instrumentId'].value;
   Instrument.getInstrumentById(instrumentId)
@@ -76,32 +63,6 @@ module.exports.updateInstrumentWithForm = function updateInstrumentWithForm (req
   var instrumentId = req.swagger.params['instrumentId'].value;
   var status = req.swagger.params['status'].value;
   Instrument.updateInstrumentWithForm(instrumentId,status)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.updateWishlist = function updateWishlist (req, res, next) {
-  var wishlistId = req.swagger.params['wishlistId'].value;
-  var userId = req.swagger.params['userId'].value;
-  var body = req.swagger.params['body'].value;
-  Instrument.updateWishlist(wishlistId,userId,body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.updateWishlistWithForm = function updateWishlistWithForm (req, res, next) {
-  var wishlistId = req.swagger.params['wishlistId'].value;
-  var userId = req.swagger.params['userId'].value;
-  var status = req.swagger.params['status'].value;
-  Instrument.updateWishlistWithForm(wishlistId,userId,status)
     .then(function (response) {
       utils.writeJson(res, response);
     })

@@ -91,8 +91,7 @@ paths:
         in: "path"
         description: "ID of instrument to return"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
       responses:
         "200":
           description: "successful operation"
@@ -120,8 +119,7 @@ paths:
         in: "path"
         description: "ID of instrument that needs to be updated"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
       - name: "status"
         in: "formData"
         description: "Updated status of the inventory"
@@ -180,8 +178,7 @@ paths:
         in: "path"
         description: "Instrument id to delete"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
       responses:
         "204":
           description: "Successful deletion"
@@ -288,7 +285,7 @@ paths:
       x-swagger-router-controller: "Wishlist"
     post:
       tags:
-      - "instrument"
+      - "wishlist"
       summary: "Updates a wishlist with form data"
       operationId: "updateWishlistWithForm"
       consumes:
@@ -315,10 +312,10 @@ paths:
       responses:
         "405":
           description: "Invalid input"
-      x-swagger-router-controller: "Instrument"
+      x-swagger-router-controller: "Wishlist"
     put:
       tags:
-      - "instrument"
+      - "wishlist"
       summary: "Update an existing wishlist"
       operationId: "updateWishlist"
       consumes:
@@ -354,10 +351,10 @@ paths:
           description: "Validation exception"
         "500":
           $ref: "#/definitions/ErrorResponse"
-      x-swagger-router-controller: "Instrument"
+      x-swagger-router-controller: "Wishlist"
     delete:
       tags:
-      - "instrument"
+      - "wishlist"
       summary: "Deletes a wishlist"
       operationId: "deleteWishlist"
       produces:
@@ -386,7 +383,7 @@ paths:
           description: "Not Found"
         "500":
           $ref: "#/definitions/ErrorResponse"
-      x-swagger-router-controller: "Instrument"
+      x-swagger-router-controller: "Wishlist"
   /inventory:
     get:
       tags:
@@ -519,8 +516,7 @@ paths:
         in: "path"
         description: "ID of inventory to update"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
       - name: "additionalMetadata"
         in: "formData"
         description: "Additional data to pass to server"
@@ -586,7 +582,7 @@ paths:
         type: "integer"
         maximum: 10
         minimum: 1
-        format: "int64"
+        format: "int32"
       responses:
         "200":
           description: "successful operation"
@@ -614,7 +610,7 @@ paths:
         required: true
         type: "integer"
         minimum: 1
-        format: "int64"
+        format: "int32"
       responses:
         "204":
           description: "Successful deletion"
@@ -819,10 +815,10 @@ definitions:
     properties:
       id:
         type: "integer"
-        format: "int64"
+        format: "int32"
       inventoryId:
         type: "integer"
-        format: "int64"
+        format: "int32"
       quantity:
         type: "integer"
         format: "int32"
@@ -852,8 +848,7 @@ definitions:
     type: "object"
     properties:
       id:
-        type: "integer"
-        format: "int64"
+        type: "string"
       username:
         type: "string"
       firstName:
@@ -873,27 +868,26 @@ definitions:
     xml:
       name: "User"
     example:
-      firstName: "firstName"
-      lastName: "lastName"
-      password: "password"
+      firstName: "Bilbo"
+      lastName: "Baggins"
+      password: "shireTimes123"
       userStatus: 6
-      phone: "phone"
-      id: 0
-      email: "email"
-      username: "username"
+      phone: "123-456-7890"
+      id: "jfdkjlsfjkl432987"
+      email: "bilbo@shire-snail-mail-service-yup.io"
+      username: "bilbo"
   Tag:
     type: "object"
     properties:
       id:
-        type: "integer"
-        format: "int64"
+        type: "string"
       name:
         type: "string"
     xml:
       name: "Tag"
     example:
-      name: "name"
-      id: 1
+      name: "belt buckle rash on back"
+      id: "kjsjklfsdjkl"
   Instrument:
     type: "object"
     required:
@@ -904,8 +898,7 @@ definitions:
     - "yearTo"
     properties:
       id:
-        type: "integer"
-        format: "int64"
+        type: "string"
       make:
         type: "string"
         example: "Gibson"
@@ -913,11 +906,13 @@ definitions:
         type: "string"
         example: "Les Paul"
       yearFrom:
-        type: "integer"
-        format: "int64"
+        type: "string"
+        example: "1959"
+        pattern: "^[1|2]\\d{3}$"
       yearTo:
-        type: "integer"
-        format: "int64"
+        type: "string"
+        example: "2021"
+        pattern: "^[1|2]\\d{3}$"
       finishes:
         type: "string"
         description: "finish options"
@@ -935,15 +930,20 @@ definitions:
     xml:
       name: "Instrument"
     example:
-      yearFrom: 6
+      yearFrom: "1957"
       finishes: "nitrocellulose lacquer"
       model: "Les Paul"
-      id: 0
+      id: "jklj3210fjkl"
       make: "Gibson"
       colors:
-      - "colors"
-      - "colors"
-      yearTo: 1
+      - "sunburst"
+      - "black"
+      - "white"
+      - "gold"
+      - "tv yellow"
+      - "silver sparkle"
+      - "red"
+      yearTo: "2021"
   Inventory:
     type: "object"
     required:
@@ -954,25 +954,28 @@ definitions:
     - "year"
     properties:
       id:
-        type: "integer"
-        format: "int64"
+        type: "string"
       make:
         type: "string"
-        example: "Gibson"
+        example: "Fender"
       model:
         type: "string"
-        example: "Les Paul"
+        example: "Coronado"
       year:
-        type: "integer"
-        format: "int64"
+        type: "string"
+        example: "1983"
+        pattern: "^[1|2]\\d{3}$"
       finish:
         type: "string"
+        example: "nitrocellulose lacquer"
         description: "finish"
       color:
         type: "string"
+        example: "tv yellow"
         description: "color"
       status:
         type: "string"
+        example: "available"
         description: "inventory mgmt"
         enum:
         - "available"
@@ -989,16 +992,16 @@ definitions:
         items:
           $ref: "#/definitions/Tag"
     example:
-      file: "file"
-      color: "color"
-      year: 6
+      file: "les-paul.jpg"
+      color: "silver sparkle"
+      year: "2019"
       model: "Les Paul"
-      finish: "finish"
-      id: 0
+      finish: "polyurethane"
+      id: "acb123heyhey"
       make: "Gibson"
       status: "available"
       tags:
-      - name: "name"
-        id: 1
-      - name: "name"
+      - name: "belt buckle rash"
+        id: 0
+      - name: "chipped paint"
         id: 1
