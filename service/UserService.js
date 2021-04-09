@@ -52,14 +52,14 @@ exports.getUserByName = function(username) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "firstName" : "firstName",
-  "lastName" : "lastName",
-  "password" : "password",
+  "firstName" : "Bilbo",
+  "lastName" : "Baggins",
+  "password" : "shireTimes123",
   "userStatus" : 6,
-  "phone" : "phone",
-  "id" : 0,
-  "email" : "email",
-  "username" : "username"
+  "phone" : "123-456-7890",
+  "id" : "jfdkjlsfjkl432987",
+  "email" : "bilbo@shire-snail-mail-service-yup.io",
+  "username" : "bilbo"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);

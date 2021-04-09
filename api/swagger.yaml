@@ -285,7 +285,7 @@ paths:
       x-swagger-router-controller: "Wishlist"
     post:
       tags:
-      - "instrument"
+      - "wishlist"
       summary: "Updates a wishlist with form data"
       operationId: "updateWishlistWithForm"
       consumes:
@@ -315,7 +315,7 @@ paths:
       x-swagger-router-controller: "Wishlist"
     put:
       tags:
-      - "instrument"
+      - "wishlist"
       summary: "Update an existing wishlist"
       operationId: "updateWishlist"
       consumes:
@@ -354,7 +354,7 @@ paths:
       x-swagger-router-controller: "Wishlist"
     delete:
       tags:
-      - "instrument"
+      - "wishlist"
       summary: "Deletes a wishlist"
       operationId: "deleteWishlist"
       produces:
@@ -383,7 +383,7 @@ paths:
           description: "Not Found"
         "500":
           $ref: "#/definitions/ErrorResponse"
-      x-swagger-router-controller: "Instrument"
+      x-swagger-router-controller: "Wishlist"
   /inventory:
     get:
       tags:
@@ -580,7 +580,7 @@ paths:
         description: "ID of inventory order that needs to be fetched"
         required: true
         type: "integer"
-        maximum: 10 # wuut
+        maximum: 10
         minimum: 1
         format: "int32"
       responses:
@@ -907,12 +907,12 @@ definitions:
         example: "Les Paul"
       yearFrom:
         type: "string"
-        pattern: '^[1|2]\d{3}$'
         example: "1959"
+        pattern: "^[1|2]\\d{3}$"
       yearTo:
         type: "string"
-        pattern: '^[1|2]\d{3}$'
         example: "2021"
+        pattern: "^[1|2]\\d{3}$"
       finishes:
         type: "string"
         description: "finish options"
@@ -963,20 +963,20 @@ definitions:
         example: "Coronado"
       year:
         type: "string"
-        pattern: '^[1|2]\d{3}$'
         example: "1983"
+        pattern: "^[1|2]\\d{3}$"
       finish:
         type: "string"
-        description: "finish"
         example: "nitrocellulose lacquer"
+        description: "finish"
       color:
         type: "string"
-        description: "color"
         example: "tv yellow"
+        description: "color"
       status:
         type: "string"
-        description: "inventory mgmt"
         example: "available"
+        description: "inventory mgmt"
         enum:
         - "available"
         - "pending"
